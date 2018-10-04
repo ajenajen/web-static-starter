@@ -1,4 +1,16 @@
-// $(document).ready(function(){
+//=============================================
+//           JQUERY DOCUMENT READY            =
+//=============================================
+$("document").ready(function() {
+
+    resize();
+    $(window).on("resize", resize);
+
+    function resize() {
+        
+    } //windows.resize
+
+
 //     $(".js-datepicker").datepicker({
 //       format: "dd | mm | yyyy",
 //       orientation: "top right"
@@ -103,10 +115,18 @@
 //       $(this).addClass('active');  
 //       console.log('click active')        
 //   });  
-// })
+
+
+})//document.ready
+
+//=============================================
+//             JQUERY WINDOW LOAD            ==
+//=============================================
+$(window).load(function() {
 
 
 
 
 
 
+}); //windows.load
