@@ -1,6 +1,6 @@
 {
-  "name": "static-web-starter-kit",
-  "version": "0.1.0",
+  "name": "web-static-starter",
+  "version": "1.0.0",
   "description": "A simple starterkit boilerplate for static website",
   "devDependencies": {
     "babel-core": "^6.24.0",
@@ -32,9 +32,10 @@
     "build": "gulp build",
     "clean": "rimraf ./dist && rimraf ./view"
   },
-  "author": "Thongchai Kitiyanantawong",
+  "author": "Janejane Suwanwong",
   "license": "MIT",
   "dependencies": {
+    "babel-register": "^6.26.0",
     "lodash": "^4.17.4"
   }
 }

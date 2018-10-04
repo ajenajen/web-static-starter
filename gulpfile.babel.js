@@ -145,7 +145,7 @@ gulp.task('js', () => {
         this.emit('end');
       }
     }))
-    .pipe($.concat('main.js'))
+    .pipe($.concat('app.js'))
     .pipe(isProduction ? gulp.dest( paths.js.build ) : gulp.dest( paths.js.dest ) );
 });
 
