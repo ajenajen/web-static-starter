@@ -9,13 +9,18 @@
 // @import "helpers/helpers";
 @import "helpers/custom_spacing";
 
+// Theme
+@import "themes/theme";
+
 // Scaffolding
 // @import "base/normalize";
 // @import "base/base";
 // @import "base/typography";
 
 // Components
-// @import "components/buttons"; 
+@import "components/buttons";
+@import "components/form";
+@import "components/carousel"; 
 // @import "components/navigation";
 
 // Layouts
@@ -26,11 +31,8 @@
 // @import "layout/sidebar";
 
 // Pages
-@import "pages/home";
-@import "pages/contact";
-
-// Theme
-@import "themes/theme";
+// @import "pages/home";
+// @import "pages/contact";
 
 // Vendor
 @import "bootstrap/bootstrap";
