@@ -3,126 +3,80 @@
 //=============================================
 $("document").ready(function() {
 
+    // Side Navbar Functionality
+    if ($(window).outerWidth() > 992) {
+        $('nav.side-navbar').hover( 
+            function () { 
+                $(this).removeClass('shrink'); 
+                $('.page').removeClass('active');
+            }, 
+            function () { 
+                $(this).addClass('shrink');
+                $('.page').addClass('active');
+            } 
+        );
+    }
+
+    // Side Navbar Mobile
+    $('#toggle-btn-open').on('click', function (e) {
+        e.preventDefault();
+        if ($(window).outerWidth() < 992) {
+            $('nav.side-navbar').toggleClass('shrink');
+            $(this).toggleClass('active');
+        } else {
+            return false;
+        }
+    });
+
+    // External links to new window
+    $('.external').on('click', function (e) {
+        e.preventDefault();
+        window.open($(this).attr("href"));
+    });
+
+    // Box search show more
+    $(".btn-show-more-search").on("click", function() {
+        $(".box-more-search").toggleClass("active");
+        $(this).toggleClass("active");
+    });
+
+    // Box search Mobile
+    $('#btn-toggle-search').on('click', function (e) {
+        e.preventDefault();
+        if ($(window).outerWidth() < 576) {
+            $('.box-toggle-search').addClass('active');
+        }
+    });
+    $('.remove-toggle-search').on('click', function (e) {
+        e.preventDefault();
+        if ($(window).outerWidth() < 576) {
+            $('.box-toggle-search').removeClass('active');
+        }
+    });
+
     resize();
-    $(window).on("resize", resize);
-
-    function resize() {
-        
-    } //windows.resize
-
-
-//     $(".js-datepicker").datepicker({
-//       format: "dd | mm | yyyy",
-//       orientation: "top right"
-//     });
-//   $('.js-open-modal').on('click', function() {
-//     $('.js-condition-modal').modal('show');
-//   });
-//   $(".slider--basic").slick({
-//     dots: true,
-//     infinite: true,
-//     speed: 300,
-//     slidesToShow: 1,
-//     autoplay: true,
-//     autoplaySpeed: 2000,
-//   });
-//   $('.slider--listing').slick({
-//     dots: true,
-//     infinite: true,
-//     speed: 300,
-//     slidesToShow: 1,
-//     centerMode: true,
-//     variableWidth: true,
-//   })
-//   $(".slider--category").slick({
-//     dots: false,
-//     infinite: false,
-//     speed: 300,
-//     slidesToShow: 1,
-//     variableWidth: true,
-//     slidesToShow: 3,
-//     slidesToScroll: 3,
-//   });
-//   $(".js-show-more-video").on('click', function() {
-//     $(".js-more-video").fadeToggle();
-//     $(this).toggleClass('active');
-//   });
-//   $(".js-show-more-content").on("click", function() {
-//     $(".js-more-content").toggleClass('active');
-//     $(this).toggleClass("active");
-//   });
-//   $(".js-tab-category-btn").on("click", function() {
-//     $(".js-tab-category-btn").removeClass("active");
-//     $(this).addClass("active");
-//   });
-//   $(".js-tab-search-btn").on("click", function() {
-//     $(".js-tab-search-btn").removeClass("active");
-//     $(this).addClass("active");
-//   });
-
-
-//   var scrollLink = $('.section-nav a');
-
-//   // Smooth scrolling
-//   scrollLink.click(function (e) {
-//     e.preventDefault();
-//     $('body,html').animate({
-//       scrollTop: $(this.hash).offset().top + 10
-//     }, 1000);
-//   });
-
-//   $('.js-more-desc').each(function (i, div) {
-//     var text = $(div).text();
-
-//     if ( $(window).width() > 374 && $(window).width() < 413) {
-//         var maxL = 37
-//     } else if ( $(window).width() <= 414 && $(window).width() < 768) {
-//         var maxL = 40
-//     } if ( $(window).width() <= 373) {
-//         var maxL = 29
-//     } 
-
-//     if (text.length > maxL) {            
-//             var begin = text.substr(0, maxL),
-//             end = text.substr(maxL);
     
-//             $(div).html(begin)
-//             .append($('<span class="showmore-link"><a class="js-show-more-desc text pink" href="#"><span class="dots">...</div> Show More</a></span>'))
-//             .append($('<span class="hidden" />').html(end));
-//    }
-//     else {
-//               text.hide();
-//       }
-//     });
-  
-//     $('.js-show-more-desc').click(function () {
-//       $(this).hide();
-//       $('.js-more-desc').addClass('active');
-//     });
+});//document.ready
 
+//=============================================
+//           JQUERY WINDOW RESIZE            =
+//=============================================
+$(window).on('resize', resize);
+function resize() {
 
+    if ($(window).outerWidth() > 992) {
+        $('nav.side-navbar').addClass('shrink');
+    } else {
+        $('nav.side-navbar').removeClass('shrink');
+    }
 
+} //windows.resize
 
-//   $('.mall-nav .mall-nav__wrap .nav-item').click(function(e) {
-//     e.preventDefault();
-//     $('.mall-nav .mall-nav__wrap .nav-item').removeClass('active');
-//     $(this).addClass('active');
-//     console.log('click active');
-//   });
-
-//     $('.tab-pane .item').click(function() {
-//       $('.tab-pane .item').removeClass('active');
-//       $(this).addClass('active');  
-//       console.log('click active')        
-//   });  
-
-
-})//document.ready
 
 //=============================================
 //             JQUERY WINDOW LOAD            ==
 //=============================================
-$(window).load(function() {
+$(window).on('load', function(){
 
 
 
@@ -130,3 +84,84 @@ $(window).load(function() {
 
 
 }); //windows.load
+
+
+
+//=============================================
+//    Add/Remove column datatable display
+//=============================================
+// add all column to current list
+$('body').on('click', 'button.add-all', function(){
+    $(this).removeClass('add').addClass('disabled');
+    var element = $('#allColumn').each(function(){
+        var li_element = $(this).html();
+        $('#currentColumn').append(li_element);
+    });
+    $('#allColumn').find('.li').remove();
+    $('#currentColumn').find('.li button').removeClass('add').addClass('remove');
+});
+
+// remove all column to current list
+$('body').on('click', 'button.remove-all', function(){
+    // $(this).removeClass('remove').addClass('disabled');
+    var element = $('#currentColumn').each(function(){
+        var li_element = $(this).html();
+        $('#allColumn').append(li_element);
+        $('#allColumn').find('.li.fixed').remove();
+    });
+    $('#currentColumn').find('.li:not(".fixed")').remove();
+    $('#allColumn').find('.li button').removeClass('remove').addClass('add');
+});
+
+// add column current list
+$('body').on('click', '#allColumn button', function(){
+    $(this).removeClass('add').addClass('remove');
+    var element = $(this).parents('.li').html();
+    var target = $('#currentColumn');
+
+    target.append('<li class="li">'+element+'</li>');
+    $(this).parents('.li').remove();
+});
+
+// remove column current list
+$('body').on('click', '#currentColumn .li:not(".fixed") button', function(){
+    $(this).removeClass('remove').addClass('add');
+    var element = $(this).parents('.li').html();
+    var target = $('#allColumn');
+
+    target.append('<li class="li">'+element+'</li>');
+    $(this).parents('.li').remove();
+});
+
+
+//=============================================
+//    Datalist input
+//=============================================
+
+var dataList = document.getElementById('json-datalist');
+var input = document.getElementById('ajax');
+
+var request = new XMLHttpRequest();
+
+request.onreadystatechange = function(response) {
+  if (request.readyState === 4) {
+    if (request.status === 200) {
+
+        var jsonOptions = JSON.parse(request.responseText);
+        jsonOptions.forEach(function(item) {
+            var option = document.createElement('option');
+            option.value = item;
+            dataList.appendChild(option);
+        });
+      
+        input.placeholder = "e.g. datalist";
+    } else {
+        input.placeholder = "Couldn't load datalist options :(";
+    }
+  }
+};
+
+input.placeholder = "Loading options...";
+
+request.open('GET', 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/4621/html-elements.json', true);
+request.send();
